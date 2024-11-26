@@ -1,0 +1,86 @@
+\documentclass[12pt]{article}
+\usepackage{geometry}
+\geometry{
+	a4paper,
+	lmargin=2cm,
+	rmargin=2cm,
+	tmargin=2cm,
+	bmargin=2cm
+}
+\usepackage{float}
+\usepackage{indentfirst}
+\usepackage{amsmath}
+\usepackage{caption}
+\usepackage{graphicx}
+\usepackage{listings}
+\usepackage{color}
+\usepackage[thinc]{esdiff}
+\usepackage[T1]{fontenc}
+
+\renewcommand{\contentsname}{Sadržaj}
+
+\title{Primenjena teorija igara domaći 1 - Karnoovo takmičenje N kompanija}
+\author{Ognjen Čavić E2 161/2024}
+\date{Novembar 2024}
+\begin{document}
+\maketitle
+\section{Nomenklatura}
+\noindent
+$q_i$ - Količina proizvoda koja je proizvedena od strane $i$-te kompanije u
+takmičenju \\[0.2cm]
+$c_i$ - Ukupna cena proizvodnje odgovarajuće kompanije \\[0.2cm]
+$d_i$ - Cena ulaska na tržište \\[0.2cm]
+$\overline{c_i}$ - Koeficijent proizvodnje kompanije tj. trošak pravljenja
+jednog proizvoda \\[0.2cm]
+$p(q_1,..., q_N)$ - Cena pojedinačnog proizvoda koji zavisi od ukupne količine
+proizvoda \\[0.2cm]
+$a$ - Faktor osetljivosti cene proizvoda \\[0.2cm]
+$b$ - Maksimalna cena proizvoda \\[0.2cm]
+$u_i(q_1,..., q_2)$ - Profit tj. dobit svake od kompanija
+\section{Model u slučaju kada se N kompanija takmiči}
+\par Jedina stvar koja se razlikuje u odnosu na model sa dve kompanije je to
+što se sabiraju količine proizvoda više kompanija.
+Kako bi se stvari malo pojednostavile pretpostavlja se da su cene proizvodnje
+pojedinačnih proizvoda i ulaska na tržište iste za svaku kompaniju tj:
+\begin{align*}
+	c_1 &= c_2 = ... = c_N \\
+	d_1 &= d_2 = ... = d_N 
+\end{align*}
+Stoga su konačne cene proizvodnje za svaku od kompanija sledeće:
+\begin{align*}
+	c_1(q_1) &= \overline{c} q_1 + d \\
+	c_2(q_2) &= \overline{c} q_2 + d \\
+	% ja sam jebeni genije
+		&\hspace{0.7cm}\vdots \\
+	c_N(q_N) &= \overline{c} q_N + d 
+\end{align*}
+Odakle se vidi se da u ovom slučaju cene proizvodnje zavise samo od količine
+robe.
+Pojedinačna cena svakog proizvoda je opisana na sledeći način:
+\begin{equation}
+	p(q_1, q_2, ..., q_N) = b - a \sum_{i=1}^N q_i
+\end{equation}
+Preostaje definisati funkciju koja opisuje profit:
+\begin{align*}
+	u_1(q_1, q_2, ..., q_N) &= q_1 * p(q_1, q_2, ..., q_N) - c_1(q_1) \\
+	u_2(q_1, q_2, ..., q_N) &= q_2 * p(q_1, q_2, ..., q_N) - c_2(q_2) \\
+		&\hspace{0.7cm}\vdots \\
+	u_N(q_1, q_2, ..., q_N) &= q_N * p(q_1, q_2, ..., q_N) - c_N(q_N)
+\end{align*}
+\section{Analiza promene plasirane robe, pojedinačne cene i dobiti sa porastom
+broja kompanija}
+\par Cilj je maksimizovati profit za svaku od kompanija, stoga je potrebno
+uraditi prvi izvod profita odgovarajuće kompanije po količini plasirane robe
+jer je to jedina stvar kojom ta kompanija može da upravlja.
+\begin{align*}
+	\frac{\partial u_1}{\partial q_1} &= b - a q_1 - a \sum_{i=1}^N q_i
+	- \overline{c}\\ 
+	\frac{\partial u_2}{\partial q_2} &= b - a q_2 - a \sum_{i=1}^N q_i
+	- \overline{c}\\ 
+		&\hspace{1.8cm}\vdots \\
+	\frac{\partial u_N}{\partial q_N} &= b - a q_N - a \sum_{i=1}^N q_i
+	- \overline{c}\\ 
+\end{align*}
+\section{Analiza slučaja kada broj kompanija neograničeno raste}
+\section{Karnoov duopol sa nesimetričnim troškovima proizvodnje}
+\end{document}
