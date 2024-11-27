@@ -16,9 +16,7 @@
 \usepackage{color}
 \usepackage[thinc]{esdiff}
 \usepackage[T1]{fontenc}
-
 \renewcommand{\contentsname}{Sadržaj}
-
 \title{Primenjena teorija igara domaći 1 - Karnoovo takmičenje N kompanija}
 \author{Ognjen Čavić E2 161/2024}
 \date{Novembar 2024}
@@ -69,18 +67,51 @@ Preostaje definisati funkciju koja opisuje profit:
 \end{align*}
 \section{Analiza promene plasirane robe, pojedinačne cene i dobiti sa porastom
 broja kompanija}
-\par Cilj je maksimizovati profit za svaku od kompanija, stoga je potrebno
-uraditi prvi izvod profita odgovarajuće kompanije po količini plasirane robe
-jer je to jedina stvar kojom ta kompanija može da upravlja.
+\par Cilj je maksimizovati profit, stoga je potrebno uraditi prvi izvod profita
+odgovarajuće kompanije po količini plasirane robe jer je to jedina stvar kojom
+ta kompanija može da upravlja.
 \begin{align*}
 	\frac{\partial u_1}{\partial q_1} &= b - a q_1 - a \sum_{i=1}^N q_i
-	- \overline{c}\\ 
+	- \overline{c} = 0\\ 
 	\frac{\partial u_2}{\partial q_2} &= b - a q_2 - a \sum_{i=1}^N q_i
-	- \overline{c}\\ 
+	- \overline{c} = 0\\ 
 		&\hspace{1.8cm}\vdots \\
 	\frac{\partial u_N}{\partial q_N} &= b - a q_N - a \sum_{i=1}^N q_i
-	- \overline{c}\\ 
+	- \overline{c} = 0 \\ 
 \end{align*}
+Sabiranjem ovih jednačina dobija se sledeće:
+\begin{gather*} 	
+	n b - a \sum_{i=1}^N q_i - a N \sum_{i=1}^N q_i
+	- N \overline{c} = 0 \\
+	n b - a (N+1) \sum_{i=1}^N q_i - N \overline{c} = 0 \\
+\end{gather*}
+Odakle sledi optimalna količina proizvoda koja dovodi do maksimalne dobiti:
+\begin{equation}
+	q^* = \sum_{i=1}^N q_i = \frac{N b - N \overline{c}}{a (N+1)}
+\end{equation}
+gde je neophodan uslov $b > \overline{c}$ jer broj proizvoda ne sme biti
+negativan.
+Zamenom u izraz za pojedinačnu cenu plasirane robe, dobija se i optimalna cena
+pojedinačnog proizvoda:
+\begin{equation}
+	p^* (q_1, q_2, ..., q_N) = \frac{b + N \overline{c}}{N+1}
+\end{equation}
 \section{Analiza slučaja kada broj kompanija neograničeno raste}
+\par Kada broj kompanija neograničeno raste potrebno je ispitati ka kojim
+vrednostima konvergiraju broj proizvoda i pojedinačna cena:
+\begin{align*}
+	\lim_{N \rightarrow \infty} q^*
+	&= \lim_{N \rightarrow \infty} \frac{N b - N \overline{c}}{a (N+1)}
+	= \frac{b - \overline{c}}{a} \\
+	\lim_{N \rightarrow \infty} p^*
+	&= \lim_{N \rightarrow \infty} \frac{b + N \overline{c}}{N+1}
+	= \overline{c}
+\end{align*}
+što znači da porast broja kompanija preko nekog broja dovodi do toga da se
+cena i količina proizvoda skoro i ne menjaju, a to podrazumeva da se isti
+profit deli između više kompanija tj. da svaka kompanija ima manju dobit tj.
+profit.
 \section{Karnoov duopol sa nesimetričnim troškovima proizvodnje}
+\par Dosadašnji rad se bavio slučajem kada postoji proizvoljan broj kompanija
+N koje su simetrične tj. imaju iste troškove proizvodnje, 
 \end{document}
