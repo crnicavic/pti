@@ -12,6 +12,7 @@
 \usepackage{amsmath}
 \usepackage{caption}
 \usepackage{graphicx}
+\usepackage{cancel}
 \usepackage{listings}
 \usepackage{color}
 \usepackage[thinc]{esdiff}
@@ -111,7 +112,44 @@ vrednostima konvergiraju broj proizvoda i pojedinačna cena:
 cena i količina proizvoda skoro i ne menjaju, a to podrazumeva da se isti
 profit deli između više kompanija tj. da svaka kompanija ima manju dobit tj.
 profit.
+%ovde bih mogao ubaciti nesto oko totalnog profita
 \section{Karnoov duopol sa nesimetričnim troškovima proizvodnje}
 \par Dosadašnji rad se bavio slučajem kada postoji proizvoljan broj kompanija
-N koje su simetrične tj. imaju iste troškove proizvodnje, 
+N koje su simetrične tj. imaju iste troškove proizvodnje, sada je potrebno
+ispitati šta se dešava kada jedna kompanija ima manje troškove proizvodnje.
+\begin{align*}
+	c_1 (q_1) &= \overline{c_1} q_1 + d_1 \\
+	c_2 (q_2) &= \overline{c_2} q_2 + d_2
+\end{align*}
+Cena pojedinačnih proizvoda se definiše na identičan način kao i do sada:
+\begin{equation*}
+	p(q_1, q_2) = b - a (q_1 + q_2)
+\end{equation*}
+funkcija profita se takođe ne menja:
+\begin{align*}
+	u_1(q_1, q_2) &= q_1 p - c_1 = q_1 b - a q_1^2 - a q_1 q_2 - \overline{c_1}
+	- d_1\\
+	u_2(q_1, q_2) &= q_2 p - c_2 = q_2 b - a q_2^2 - a q_1 q_2 - \overline{c_2}
+	- d_2\\
+\end{align*}
+traži se prvi izvod po količini plasirane robe svake kompanije:
+\begin{align*}
+	\frac{\partial u_1}{\partial q_1} &= b - 2 a q_1 - a q_2 - \overline{c_1} = 0
+	\\
+	\frac{\partial u_2}{\partial q_2} &= b - a q_1 - 2 a q_2 - \overline{c_1} = 0
+\end{align*}
+sabiranjem ove dve jednačine se dobija izraz iz kog se određuje optimalna
+količina proizvoda:
+\begin{gather*}
+	2 b - 3 a q_1 - 3 a q_2 - \overline{c_1} - \overline{c_2} = 0 \\
+	q^* = q_1 + q_2 = \frac{2 b - \overline{c_1} - \overline{c_2}}{3 a}
+\end{gather*}
+odakle sledi optimalna cena pojedinačnog proizvoda:
+\begin{equation*}
+	p^*(q^*) = b
+	- \cancel{a} \frac{2 b - \overline{c_1} - \overline{c_2}}{3 \cancel{a}}
+	= \frac{b + \overline{c_1} + \overline{c_2}}{3}
+\end{equation*}
+% koji je zakljucak zaista nemam pojma, verovatno da jedna firma kompletno
+% dominira trziste dok druga duva djoku
 \end{document}
