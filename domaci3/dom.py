@@ -9,6 +9,17 @@ default_agent_graph = {
 	4: [1]
 }
 
+"""
+	One thing that might be missing here is implementing this whole thing
+	so that agents also communicate about the measurements rather than
+	just averages
+
+	Also implementing this to be more asynchronous but who was the time
+
+	Another cheeky idea is to check has the mean of the agent values been
+	going up or down and based on that say that the consensus is the min
+	or max of does values
+"""
 def consensus(value, alpha, iter_count, var, eps, agent_graph=None):
 	"""
 		Function that does more or less everything
