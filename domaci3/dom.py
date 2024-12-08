@@ -41,7 +41,7 @@ def consensus(value, alpha, iter_count, var, eps, agent_graph=None):
 	if agent_graph is None:
 		agent_graph = default_agent_graph
 	
-	agent_vals = (rnd.rand(len(agent_graph)) + var) * value
+	agent_vals = ((rnd.rand(len(agent_graph)) - 0.5) * 2 * var + 1) * value
 
 
 	for i in range(iter_count):
@@ -53,7 +53,7 @@ def consensus(value, alpha, iter_count, var, eps, agent_graph=None):
 			for adj in agent_graph[agent]:
 				u += gamma * (agent_vals[adj] - agent_vals[agent])
 			
-			new_m = (rnd.rand() + var) * value
+			new_m = ((rnd.rand() - 0.5) * 2 * var + 1) * value
 			b = (new_m - agent_vals[agent]) * alpha
 
 			agent_vals[agent] += b + u
