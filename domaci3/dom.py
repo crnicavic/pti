@@ -9,21 +9,6 @@ default_agent_graph = {
 	4: [1]
 }
 
-def calculate_weights(agent_graph):
-	"""
-		It was an idea but not a very good one
-		weights are based on how many neighbours each node has
-	"""
-	# it is wasteful but simple and a bit faster than tuples
-	weights_dict = dict()
-	for agent in agent_graph:
-		weights_dict[agent] = np.zeros(len(agent_graph))
-		total_adj = 0
-		for adj in agent_graph[agent]:
-			total_adj += len(agent_graph[adj])
-		weights_dict[agent][adj] = len(agent_graph[adj]) / total_adj
-	return weights_dict
-
 def consensus(value, alpha, iter_count, var, eps, agent_graph=None):
 	"""
 		Function that does more or less everything
@@ -43,15 +28,12 @@ def consensus(value, alpha, iter_count, var, eps, agent_graph=None):
 	
 	agent_vals = ((rnd.rand(len(agent_graph)) - 0.5) * 2 * var + 1) * value
 
-
 	for i in range(iter_count):
 		for agent in agent_graph:
-			total_adj = 0
-				
 			u = 0
-			gamma = 1 / len(agent_graph[agent])
 			for adj in agent_graph[agent]:
-				u += gamma * (agent_vals[adj] - agent_vals[agent])
+				u += (agent_vals[adj] - agent_vals[agent])
+			u = u / len(agent_graph[agent])
 			
 			new_m = ((rnd.rand() - 0.5) * 2 * var + 1) * value
 			b = (new_m - agent_vals[agent]) * alpha
