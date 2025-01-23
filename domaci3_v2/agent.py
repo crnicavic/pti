@@ -18,8 +18,10 @@ class Agent:
         return self.neighbours
 
     def update_value(self, weights, neighbour_values, alpha = 0.01):
-        average = np.mean(weights[i] * (neighbour_values[i] - self.value) for i in range(len(neighbour_values)))
+        if len(neighbour_values) == 0:
+            return
+        average = np.mean([weights[i] * (neighbour_values[i]) for i in range(len(neighbour_values))])
         self.value += alpha * (average - self.value)
 
     def __repr__(self):
-        return f"Agent(id={self.id}, state={self.value:.2f})"
+        return f"\tAgent(id={self.id}, value={self.value:.2f})\n"

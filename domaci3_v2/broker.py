@@ -1,6 +1,7 @@
 import numpy as np
 import networkx as nx
 from agent import Agent
+import matplotlib.pyplot as plt
 import random
 
 class Broker:
@@ -11,9 +12,6 @@ class Broker:
         self.graph = self.create_directed_graph()
         self.graph_matrix = nx.to_numpy_array(self.graph)
 
-    def compute_weights(self):
-        return np.ones(self.num_agents)
-
     def create_directed_graph(self, p=0.3):
         G = nx.DiGraph()
         G.add_nodes_from(range(self.num_agents))
@@ -22,6 +20,18 @@ class Broker:
                 if i != j and random.random() < p:
                     G.add_edge(i, j, weight=1)
         return G
+
+    def visualize_graph(self):
+        # Set up the position layout for the graph
+        pos = nx.spring_layout(self.graph)  # You can use different layouts like `circular_layout`, `shell_layout`, etc.
+        
+        # Draw the graph with labels
+        plt.figure(figsize=(8, 8))
+        nx.draw(self.graph, pos, with_labels=True, node_size=500, node_color='lightblue', arrows=True, font_size=12)
+        
+        # Display the plot
+        plt.title("Directed Graph")
+        plt.show()
 
     def get_neighbor_values(self, agent_id):
         neighbors = list(self.graph.neighbors(agent_id))
@@ -40,4 +50,4 @@ class Broker:
         pass
 
     def __repr__(self):
-        return f"Broker(num_agents={self.num_agents}, agents={self.agents})"
+        return f"Broker(num_agents={self.num_agents}, \nagents=\n{self.agents})\n"
