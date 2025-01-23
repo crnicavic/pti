@@ -1,5 +1,5 @@
 from broker import Broker
-
+import matplotlib.pyplot as plt
 
 class Model:
     def __init__(self, broker):
@@ -7,10 +7,14 @@ class Model:
 
     def run(self, max_iterations=1000, tolerance=1e-3):
         iteration = 0
+        values = []
         print(self.broker)
         while iteration < max_iterations:
-            self.broker.update_agents()
+            values.append(self.broker.update_agents())
             iteration += 1
             if iteration % 50 == 0:
                 print(self.broker)
+        return values
 
+    def visualize_results(self, values):
+        plt.plot(values)

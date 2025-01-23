@@ -12,8 +12,9 @@ class Broker:
         self.graph = self.create_directed_graph()
         self.graph_matrix = nx.to_numpy_array(self.graph)
 
-    def create_directed_graph(self, p=0.3):
+    def create_directed_graph(self, p=0.4):
         G = nx.DiGraph()
+        p = np.log(self.num_agents) / self.num_agents
         G.add_nodes_from(range(self.num_agents))
         for i in range(self.num_agents):
             for j in range(self.num_agents):
@@ -26,7 +27,7 @@ class Broker:
         pos = nx.spring_layout(self.graph)  # You can use different layouts like `circular_layout`, `shell_layout`, etc.
         
         # Draw the graph with labels
-        plt.figure(figsize=(8, 8))
+        plt.figure(figsize=(self.num_agents, self.num_agents))
         nx.draw(self.graph, pos, with_labels=True, node_size=500, node_color='lightblue', arrows=True, font_size=12)
         
         # Display the plot

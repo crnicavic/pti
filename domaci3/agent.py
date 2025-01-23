@@ -17,7 +17,7 @@ class Agent:
     def get_neighbours(self):
         return self.neighbours
 
-    def update_value(self, weights, neighbour_values, alpha = 0.01):
+    def update_value(self, weights, neighbour_values, alpha = 0.04):
         if len(neighbour_values) == 0:
             return
         average = np.mean([weights[i] * (neighbour_values[i]) for i in range(len(neighbour_values))])
