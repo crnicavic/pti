@@ -18,3 +18,10 @@ class Model:
 
     def visualize_results(self, values):
         plt.plot(values)
+        plt.xlabel('Iterations')
+        plt.ylabel('Temperature Values')
+        l = ''
+        for i in range(self.broker.num_agents):
+            l += f'{i}'
+        plt.legend(l)
+        plt.show()
