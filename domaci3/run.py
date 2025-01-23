@@ -1,7 +1,7 @@
 from model import Model
 from broker import Broker
 
-broker = Broker(5, 10, 15)
+broker = Broker(10, 10, 15)
 model = Model(broker)
 
 values = model.run()

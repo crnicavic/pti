@@ -23,13 +23,14 @@ class Broker:
         return G
 
     def visualize_graph(self):
-        # Set up the position layout for the graph
         pos = nx.spring_layout(self.graph)  # You can use different layouts like `circular_layout`, `shell_layout`, etc.
-        
+
+        reversed_graph = self.graph.reverse(copy=True)
+
         # Draw the graph with labels
         plt.figure(figsize=(self.num_agents, self.num_agents))
-        nx.draw(self.graph, pos, with_labels=True, node_size=500, node_color='lightblue', arrows=True, font_size=12)
-        
+        nx.draw(reversed_graph, pos, with_labels=True, node_size=500, node_color='lightblue', arrows=True, font_size=12)
+
         # Display the plot
         plt.title("Directed Graph")
         plt.show()

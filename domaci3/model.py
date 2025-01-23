@@ -23,5 +23,5 @@ class Model:
         l = ''
         for i in range(self.broker.num_agents):
             l += f'{i}'
-        plt.legend(l)
+        plt.legend(l,loc='upper right')
         plt.show()
